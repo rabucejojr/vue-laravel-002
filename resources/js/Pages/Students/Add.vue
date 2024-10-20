@@ -57,7 +57,7 @@ const submit = () =>{
         <Head title="Add Students"/>
         <div class="pt-8">
                 <form @submit.prevent="submit">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto p-4 bg-white shadow-md">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto p-4">
                         <!-- <div class="space-y-4 max-w-md mx-auto p-4 bg-white shadow-md rounded-lg"> -->
                         <div class="flex flex-col">
                             <label for="firstname" class="text-gray-700 mb-2 font-semibold">First Name</label>
@@ -91,19 +91,16 @@ const submit = () =>{
                             <label for="province" class="text-gray-700 mb-2 font-semibold">Province</label>
                             <input type="text" id="province" v-model="form.province" class="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-                        <div class="sm:col-span-2 flex justify-center">
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                Submit
-                            </button>
-                        </div>
                     </div>
                 </form>
-                <div class="mt-4 flex justify-center">
+                <div class="sm:col-span-2 flex justify-center space-x-4">
                     <button type="button" @click="back" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         Back
                     </button>
+                    <button type="submit" @click="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Submit
+                    </button>
                 </div>
-
     </div>
     </AuthenticatedLayout>
 </template>
