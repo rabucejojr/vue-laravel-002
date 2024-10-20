@@ -17,8 +17,10 @@ const form = useForm({
     province:props.student.province,
 });
 
+const form_back = useForm({});
 const back = () =>{
-    console.log('back');
+    // console.log('back');
+    form_back.get(route('students.index'));
 }
 const update = ()=>{
     // form.put(route('students.update',props.student.id))

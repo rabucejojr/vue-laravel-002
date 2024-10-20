@@ -12,9 +12,10 @@ const form = useForm({
     municipality:'',
     province:'',
 });
-
+const form_back = useForm({});
 const back = () =>{
-    console.log('back');
+    // console.log('back');
+    form_back.get(route('students.index'));
 };
 
 const submit = () =>{
