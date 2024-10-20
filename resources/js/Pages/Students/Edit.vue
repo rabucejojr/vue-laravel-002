@@ -2,6 +2,7 @@
 import { Head, useForm } from '@inertiajs/vue3';
 import { watchEffect } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Swal from 'sweetalert2';
 
 const props = defineProps({
     student:Object,
@@ -17,11 +18,29 @@ const form = useForm({
     province:props.student.province,
 });
 const update = ()=>{
-    form.put(route('students.update',props.student.id))
+    // form.put(route('students.update',props.student.id))
+    Swal.fire({
+        title: 'Save update?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Update',
+        cancelButtonText: 'Cancel'
+    }).then((result)=>{
+        if (result.isConfirmed) {
+            form.put(route('students.update',props.student.id))
+            }
+        else {
+            console.log('delete cancel');
+        }
+    })
 };
 </script>
 <template>
     <AuthenticatedLayout>
+        <Head title="Edit Students"/>
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <form @submit.prevent="update">

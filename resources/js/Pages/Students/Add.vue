@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
     firstname:'',
@@ -40,6 +40,7 @@ const submit = () =>{
 
 <template>
     <AuthenticatedLayout>
+        <Head title="Add Students"/>
         <form @submit.prevent="submit">
             <div class="">
                 <label for="firstname" class="p-2" >First Name</label>

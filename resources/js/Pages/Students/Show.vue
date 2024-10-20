@@ -2,11 +2,9 @@
 <script setup>
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import DangerButton from '@/Components/DangerButton.vue';
-
-
-
+import Swal from 'sweetalert2';
 
 defineProps({
     students:{
@@ -20,23 +18,38 @@ const add = ()=>{
     form.get(route('students.create'));
 };
 const edit = (id)=>{
-    // console.log('edit');
     form.get(route('students.edit',id));
 };
 const delete_id = (id)=>{
-    // console.log('delete student');
-     form.delete(`students/${id}`,{
-        onSuccess:()=>{
-            console.log('deleted successfully');
-        },
-        onError: (errors) => {
-            console.log('failed to delete');
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result)=>{
+        if (result.isConfirmed) {
+        form.delete(`students/${id}`,{
+            onSuccess:()=>{
+                console.log('deleted successfully');
+            },
+            onError: (errors) => {
+                console.log('failed to delete');
+            }
+            });
+            }
+        else {
+            console.log('delete cancelled');
         }
-    });
+    })
 };
 </script>
 <template>
     <AuthenticatedLayout>
+        <Head title="Students"/>
         <div>
             <div class="ps-12 pt-5">
                 <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
