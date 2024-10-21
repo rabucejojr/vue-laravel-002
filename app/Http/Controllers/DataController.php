@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Student;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class DataController extends Controller
@@ -9,9 +10,22 @@ class DataController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, Student $students)
     {
-        //
+        // Get the search query from the request
+        $search = $request->input('search');
+
+        // Fetch data from the database based on the search query
+        $locations = Student::where('brgy', 'like', '%' . $search . '%')
+            ->orWhere('municipality', 'like', '%' . $search . '%')
+            ->orWhere('province', 'like', '%' . $search . '%')
+            ->get();
+
+        // Pass the data to the Inertia view
+        return Inertia::render('SearchResults', [
+            'students' => $students,
+            'search' => $search,
+        ]);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Foundation\Application;
@@ -25,7 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //student controller
     Route::resource('students',StudentController::class);
-    
+    //data controller
+    Route::get('/students/search',[DataController::class, 'index'])->name('search');
+
 });
 
 require __DIR__.'/auth.php';

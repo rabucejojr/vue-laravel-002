@@ -51,10 +51,12 @@ const delete_id = (id)=>{
     <AuthenticatedLayout>
         <Head title="Students"/>
         <div>
-            <div class="ps-12 pt-5">
-                <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
+            <div class="flex justify-center">
+                <div class="w-3/5 flex justify-end p-5">
+                    <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
+                </div>
             </div>
-            <div class="pt-5">
+            <div class="">
                 <div class="flex justify-center">
                     <table class="w-3/5 text-center border-collapse border border-gray-300">
                 <thead>
