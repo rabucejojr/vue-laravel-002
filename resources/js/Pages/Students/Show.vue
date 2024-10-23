@@ -52,7 +52,12 @@ const delete_id = (id)=>{
         <Head title="Students"/>
         <div>
             <div class="flex justify-center">
-                <div class="w-3/5 flex justify-end p-5">
+                <!-- <div class=" flex justify-start p-5">
+                </div> -->
+                <div class="w-3/5 flex justify-start p-5">
+
+                    <input type="text">
+                    <PrimaryButton class="bg-sky-500 rounded-lg">Search</PrimaryButton>
                     <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
                 </div>
             </div>

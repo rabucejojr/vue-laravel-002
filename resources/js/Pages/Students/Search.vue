@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import Chart from './Graph/Chart.vue';
+import { RiSearch2Line } from '@remixicon/vue';
+
 
 // Extract props from Inertia page props
 const { student, search } = usePage().props;
@@ -11,21 +13,20 @@ const searchQuery = ref(search);
 
 // Rename the search method to avoid the conflict
 const performSearch = () => {
-    Inertia.get(route('search'), { search: searchQuery.value }, { preserveState: true });
+    // Inertia.get(route('search'), { search: searchQuery.value }, { preserveState: true });
+    console.log('click');
 };
 </script>
 
 <template>
     <div>
-        <h1>Search Results for: {{ search }}</h1>
-
-        <input v-model="searchQuery" placeholder="Search by barangay, municipality, or province" @input="performSearch" />
-
-        <div v-if="student.length">
-        <Chart :students="students" />
-        </div>
-        <div v-else>
-        <p>No results found.</p>
+        <div class="flex flex-row">
+            <div class="flex items-center">
+                <RiSearch2Line/>
+            </div>
+            <div class="">
+                <input class="rounded-lg" v-model="searchQuery" placeholder="Search ..." @input="performSearch" />
+            </div>
         </div>
     </div>
 </template>
