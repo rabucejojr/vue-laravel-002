@@ -19,6 +19,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
+        "@remixicon/vue": "^4.3.0",
         "highcharts": "^11.4.8",
         "sweetalert2": "^11.14.3"
     }
