@@ -21,6 +21,8 @@
     "dependencies": {
         "@remixicon/vue": "^4.3.0",
         "highcharts": "^11.4.8",
-        "sweetalert2": "^11.14.3"
+        "primeicons": "^7.0.0",
+        "primevue": "^4.1.1",
+        "sweetalert2": "^11.6.13"
     }
 }
