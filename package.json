@@ -19,7 +19,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "@remixicon/vue": "^4.3.0",
+        "@remixicon/vue": "^4.5.0",
         "highcharts": "^11.4.8",
         "laravel-vue-pagination": "^4.1.3",
         "primeicons": "^7.0.0",
