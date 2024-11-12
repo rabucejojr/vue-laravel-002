@@ -24,7 +24,7 @@ defineProps({
                     :href="link.url"
 
                 >
-                {{ link.label }}
+                <span v-html="link.label"></span>
                 </Link>
 
             </template>

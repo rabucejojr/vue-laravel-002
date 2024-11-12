@@ -62,7 +62,7 @@ const delete_id = (id)=>{
                     <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
                 </div>
             </div>
-            <!-- {{ students }} -->
+            <!-- {{ students.data }} -->
             <div class="">
                 <div class="flex justify-center">
                     <table class="w-3/5 text-center border-collapse border border-gray-300">
