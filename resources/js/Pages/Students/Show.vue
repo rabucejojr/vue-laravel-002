@@ -82,7 +82,7 @@ const delete_id = (id)=>{
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="student in filteredStudents" :key="student.id">
+                            <tr v-for="student in students.data" :key="student.id">
                                 <td class="border border-gray-300 px-4 py-2">{{ student.id }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ student.firstname }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ student.middlename }}</td>
