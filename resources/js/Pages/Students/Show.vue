@@ -5,10 +5,11 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import DangerButton from '@/Components/DangerButton.vue';
 import Swal from 'sweetalert2';
+import Pagination from '@/Components/Pagination.vue';
 
 defineProps({
     students:{
-        type:Array,
+        type:[Object,Array],
         default:()=>[],
     }
 });
@@ -61,45 +62,50 @@ const delete_id = (id)=>{
                     <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
                 </div>
             </div>
+            <!-- {{ students }} -->
             <div class="">
                 <div class="flex justify-center">
                     <table class="w-3/5 text-center border-collapse border border-gray-300">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="border border-gray-300 px-4 py-2">ID</th>
-                        <th class="border border-gray-300 px-4 py-2">First Name</th>
-                        <th class="border border-gray-300 px-4 py-2">Middle Name</th>
-                        <th class="border border-gray-300 px-4 py-2">Last Name</th>
-                        <th class="border border-gray-300 px-4 py-2">Extension</th>
-                        <th class="border border-gray-300 px-4 py-2">Purok</th>
-                        <th class="border border-gray-300 px-4 py-2">Brgy.</th>
-                        <th class="border border-gray-300 px-4 py-2">City/Municipality</th>
-                        <th class="border border-gray-300 px-4 py-2">Province</th>
-                        <th class="border border-gray-300 px-4 py-2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="student in students" :key="student.id">
-                        <td class="border border-gray-300 px-4 py-2">{{ student.id }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.firstname }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.middlename }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.lastname }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.extension }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.purok }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.brgy }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.municipality }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ student.province }}</td>
-                        <td class="border border-gray-300 px-4 py-2">
-                            <div class="pb-2">
-                                <PrimaryButton class="bg-sky-500 rounded-lg" @click="edit(student.id)">Edit</PrimaryButton>
-                            </div>
-                            <div class="">
-                                <DangerButton  @click="delete_id(student.id)">Delete</DangerButton>
-                            </div>
-                        </td >
-                    </tr>
-                </tbody>
-            </table>
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border border-gray-300 px-4 py-2">ID</th>
+                                <th class="border border-gray-300 px-4 py-2">First Name</th>
+                                <th class="border border-gray-300 px-4 py-2">Middle Name</th>
+                                <th class="border border-gray-300 px-4 py-2">Last Name</th>
+                                <th class="border border-gray-300 px-4 py-2">Extension</th>
+                                <th class="border border-gray-300 px-4 py-2">Purok</th>
+                                <th class="border border-gray-300 px-4 py-2">Brgy.</th>
+                                <th class="border border-gray-300 px-4 py-2">City/Municipality</th>
+                                <th class="border border-gray-300 px-4 py-2">Province</th>
+                                <th class="border border-gray-300 px-4 py-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="student in students.data" :key="student.id">
+                                <td class="border border-gray-300 px-4 py-2">{{ student.id }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.firstname }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.middlename }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.lastname }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.extension }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.purok }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.brgy }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.municipality }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ student.province }}</td>
+                                <td class="border border-gray-300 px-4 py-2">
+                                    <div class="pb-2">
+                                        <PrimaryButton class="bg-sky-500 rounded-lg" @click="edit(student.id)">Edit</PrimaryButton>
+                                    </div>
+                                    <div class="">
+                                        <DangerButton  @click="delete_id(student.id)">Delete</DangerButton>
+                                    </div>
+                                </td >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination Component -->
+                <div class="flex justify-center mb-4">
+                    <Pagination class="mt-4" :links="students.links"/>
                 </div>
             </div>
         </div>
