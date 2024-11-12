@@ -1,5 +1,6 @@
 
 <script setup>
+import { ref, computed } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
@@ -57,8 +58,8 @@ const delete_id = (id)=>{
                 </div> -->
                 <div class="w-3/5 flex justify-start p-5">
 
-                    <input type="text">
-                    <PrimaryButton class="bg-sky-500 rounded-lg">Search</PrimaryButton>
+                    <input type="text" class="mr-3 border rounded">
+                    <PrimaryButton class="bg-sky-500 rounded-lg mr-3">Search</PrimaryButton>
                     <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
                 </div>
             </div>
@@ -81,7 +82,7 @@ const delete_id = (id)=>{
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="student in students.data" :key="student.id">
+                            <tr v-for="student in filteredStudents" :key="student.id">
                                 <td class="border border-gray-300 px-4 py-2">{{ student.id }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ student.firstname }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ student.middlename }}</td>
@@ -93,10 +94,10 @@ const delete_id = (id)=>{
                                 <td class="border border-gray-300 px-4 py-2">{{ student.province }}</td>
                                 <td class="border border-gray-300 px-4 py-2">
                                     <div class="pb-2">
-                                        <PrimaryButton class="bg-sky-500 rounded-lg" @click="edit(student.id)">Edit</PrimaryButton>
+                                        <PrimaryButton class="bg-sky-500 rounded-lg px-4 py-2 w-full text" @click="edit(student.id)">Edit</PrimaryButton>
                                     </div>
                                     <div class="">
-                                        <DangerButton  @click="delete_id(student.id)">Delete</DangerButton>
+                                        <DangerButton class="px-4 py-2 w-full text-center" @click="delete_id(student.id)">Delete</DangerButton>
                                     </div>
                                 </td >
                             </tr>
