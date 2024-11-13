@@ -1,7 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import Search from './Students/Search.vue';
 
 </script>
 
@@ -24,7 +23,6 @@ import Search from './Students/Search.vue';
                 >
                     <div class="p-6 text-gray-900">
                         You're logged in!
-                        <Search/>
                     </div>
                 </div>
             </div>
