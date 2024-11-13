@@ -7,8 +7,9 @@ import { Head, useForm } from '@inertiajs/vue3';
 import DangerButton from '@/Components/DangerButton.vue';
 import Swal from 'sweetalert2';
 import Pagination from '@/Components/Pagination.vue';
+import Search from '@/Components/Search.vue';
 
-defineProps({
+const props = defineProps({
     students:{
         type:[Object,Array],
         default:()=>[],
@@ -48,6 +49,22 @@ const delete_id = (id)=>{
         }
     })
 };
+
+const searchFilter = ref('');
+
+const filteredStudents = computed(()=>{
+    if(!searchFilter.value){
+        return props.students.data;
+    }
+    return props.students.data.filter(student =>
+        `${student.firstname} ${student.lastname} ${student.extension} ${student.purok} ${student.brgy} ${student.municipality} ${student.province}`.toLowerCase().includes(searchFilter.value.toLowerCase())
+    );
+});
+
+const handleSearch = (search)=>{
+    searchFilter.value = search;
+};
+
 </script>
 <template>
     <AuthenticatedLayout>
@@ -57,9 +74,8 @@ const delete_id = (id)=>{
                 <!-- <div class=" flex justify-start p-5">
                 </div> -->
                 <div class="w-3/5 flex justify-start p-5">
-
-                    <input type="text" class="mr-3 border rounded">
-                    <PrimaryButton class="bg-sky-500 rounded-lg mr-3">Search</PrimaryButton>
+                    <!-- Search Form Component -->
+                    <Search @search-input="handleSearch"/>
                     <PrimaryButton @click="add" class="bg-sky-500 rounded-lg">Add Student</PrimaryButton>
                 </div>
             </div>
@@ -82,7 +98,7 @@ const delete_id = (id)=>{
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="student in students.data" :key="student.id">
+                            <tr v-for="student in filteredStudents" :key="student.id">
                                 <td class="border border-gray-300 px-4 py-2">{{ student.id }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ student.firstname }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ student.middlename }}</td>
